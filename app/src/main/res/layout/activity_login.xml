@@ -18,7 +18,6 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="请输入用户名"
-        android:text="sourfeng@163.com"
         android:inputType="textPersonName"
         android:singleLine="true" />
 
@@ -29,7 +28,6 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="请输入密码"
-        android:text="xiahanyao1994111"
         android:inputType="textPassword"
         android:singleLine="true" />
 
