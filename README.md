@@ -118,7 +118,7 @@ if (annotation != null) {
 在上面我们通过获取这个`PresenterActivity`的子类获取子类上面的注解`annotation`，然后通过注解得到这个布局`Id`
 再将得到的布局通过`setContentView(layoutResId)`就可以向`Activity`加入布局
 
-####使用@Layout
+#### 使用@Layout
 
 怎么使用呢？其实很简单了：
 
@@ -194,5 +194,6 @@ public class LoginActivity extends PresenterActivity<LoginView,LoginModel> {
 ```
 
 **总结：**
+
 * **自定义注解使用到了元注解；**
 * **自定义注解要讲究三步走，即：定义->实现->使用**
