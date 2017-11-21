@@ -37,7 +37,7 @@ android在很多地方，我们已经使用到了注解。比如：
 
 * `SOURCE`：只保留在源码中，不保留在class中，同时也不加载到虚拟机中
 * `CLASS`：保留在源码中，同时也保留到class中，但是不加载到虚拟机中
-* `RUNING`：保留到源码中，同时也保留到class中，最后加载到虚拟机中
+* `RUNTIME`：保留到源码中，同时也保留到class中，最后加载到虚拟机中
 
 一般使用最多的还是最后一种：  
 
@@ -49,11 +49,7 @@ public @interface RetentionAnnotation {
 }
 
 ```
-注意：
- * 运行时注解就是就是运行时运用反射，动态获取对象、属性、方法等，可能会牺牲一点效率。
- * 编译时注解就是在程序编译时根据注解进行一些额外的操作，大名鼎鼎的ButterKnife运用的就是编译时注解,
- ButterKnife在我们编译时，就根据注解，自动生成了一些辅助类。
- 
+
 ### @Target
 
 这个注解表示注解的作用范围，主要有如下:
@@ -197,3 +193,5 @@ public class LoginActivity extends PresenterActivity<LoginView,LoginModel> {
 
 * **自定义注解使用到了元注解；**
 * **自定义注解要讲究三步走，即：定义->实现->使用**
+
+查看项目，请戳[这里](https://insight.io/github.com/sourfeng/AOPTest/tree/master/)
