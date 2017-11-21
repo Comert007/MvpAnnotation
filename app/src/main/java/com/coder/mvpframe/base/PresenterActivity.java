@@ -10,6 +10,9 @@ import com.coder.mvpframe.BaseApplication;
 import com.coder.mvpframe.annotation.Layout;
 import com.coder.mvpframe.annotation.MVAnnotation;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+
 import butterknife.ButterKnife;
 
 /**
@@ -117,6 +120,43 @@ public class PresenterActivity<V extends IView, M> extends AppCompatActivity imp
         }
 
     }
+
+    /**
+     * 创建关系类
+     */
+    private void createRelationshipClass() {
+        final IPresenter presenter = this;
+        IView view = null;
+        Object model = null;
+
+        Class<? extends PresenterActivity> clz = this.getClass();
+        try {
+            Type genericSuperclass = clz.getGenericSuperclass();
+            if (genericSuperclass instanceof ParameterizedType) {
+                ParameterizedType parameterizedType = (ParameterizedType) genericSuperclass;
+                Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
+                if (actualTypeArguments.length == 2) {
+                    Type viewType = actualTypeArguments[0];// view
+                    if (viewType instanceof Class) {
+                        view = (IView) ((Class) viewType).newInstance();
+                    }
+                    Type modelType = actualTypeArguments[1];// model
+                    if (IModel.class.isAssignableFrom((Class) modelType)) {
+                        model = null;
+                    } else {
+                        model = createRetrofitService((Class) modelType);
+                    }
+                }
+            }
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void setView(V v) {
